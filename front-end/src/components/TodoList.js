@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NewTodoForm from './NewTodoForm';
 import Todo from './Todo';
-import { v4 as uuid } from 'uuid';
 import './TodoList.css';
 
 class TodoList extends Component {
@@ -9,21 +8,18 @@ class TodoList extends Component {
     super(props);
 
     this.state = {
-      todos: [
-        { task: 'Software Engineering: Code for 4 Hours', id: uuid(), completed: false },
-        { task: 'E-Commerce: Work on Business for 2 Hours', id: uuid(), completed: false },
-        { task: 'Financials: Study Crypto/Investing/Personal Finance for 1 Hour', id: uuid(), completed: false },
-        { task: 'Freelance Developer: Apply to Jobs/Gigs for 1 Hour', id: uuid(), completed: false },
-        { task: 'Aesthetics: Max Hype - Chest/Arms Workout', id: uuid(), completed: false },
-        { task: 'Martial Arts: Attend BJJ Fundamentals', id: uuid, completed: false },
-        { task: 'Language Learning: Study Japanese for 1 Hour', id: uuid, completed: false },
-        { task: 'Other: Read 10 Pages of Personal Development Book', id: uuid, completed: false }
-      ]
+      todos: []
     };
     this.addItem = this.addItem.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.update = this.update.bind(this);
     this.toggleCompletion = this.toggleCompletion.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('/api/todos')
+    .then(res => res.json())
+    .then(todos => this.setState({ todos }, () => console.log('Todos fetched...', todos)));
   }
 
   addItem(item) {
