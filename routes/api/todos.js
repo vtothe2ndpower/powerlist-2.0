@@ -20,6 +20,8 @@ router.post('/', (req, res) => {
   const newTodo = new Todo({
     task: req.body.task
   });
+
+  newTodo.save().then(todo => res.json(todo));
 });
 
 // @route DELETE api/todos/:id

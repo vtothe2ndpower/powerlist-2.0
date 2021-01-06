@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { v4 as uuid } from 'uuid';
+// import { v4 as uuid } from 'uuid';
 import { connect } from 'react-redux';
-import { getTodos } from '../actions/todoActions';
+import { getTodos, deleteTodo } from '../actions/todoActions';
 import PropTypes from 'prop-types';
 
-import NewTodoForm from './NewTodoForm';
 import Todo from './Todo';
 import './TodoList.css';
 
@@ -17,7 +16,7 @@ class TodoList extends Component {
     // this.state = {
     //   todos: []
     // };
-    this.addItem = this.addItem.bind(this);
+    // this.addItem = this.addItem.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.update = this.update.bind(this);
     this.toggleCompletion = this.toggleCompletion.bind(this);
@@ -33,17 +32,18 @@ class TodoList extends Component {
     this.props.getTodos();
   }
 
-  addItem(item) {
-    this.setState(curState => ({
-      todos: [...curState.todos, item]
-    }));
-  }
+  // addItem(item) {
+  //   this.setState(curState => ({
+  //     todos: [...curState.todos, item]
+  //   }));
+  // }
 
   handleClick(id) {
     // Remove task from state
-    this.setState({
-      todos: this.state.todos.filter(item => item.id !== id)
-    });
+    // this.setState({
+    //   todos: this.state.todos.filter(item => item.id !== id)
+    // });
+    this.props.deleteTodo(id);
   }
 
   update(id, updatedTask) {
@@ -78,17 +78,16 @@ class TodoList extends Component {
         <h1>The Power List <span>A Simple React Todo List Application</span></h1>
         {todos.map((item, index) => (
           <Todo 
-            key={item.id}
-            id={item.id}
+            key={item._id}
+            id={item._id}
             task={item.task} 
             completed={item.completed}
             num={index}
             updateItem={this.update}
             toggleTodo={this.toggleCompletion}
-            handleClick={() => this.handleClick(item.id)}
+            handleClick={() => this.handleClick(item._id)}
           />
         ))}
-        <NewTodoForm addItem={this.addItem} />
       </div>
     )
   }
@@ -103,7 +102,7 @@ const mapStateToProps = (state) => ({
   todo: state.todo
 });
 
-export default connect(mapStateToProps, { getTodos })(TodoList);
+export default connect(mapStateToProps, { getTodos, deleteTodo })(TodoList);
 
 // Video 4:
 // Add Reactstrap Code
