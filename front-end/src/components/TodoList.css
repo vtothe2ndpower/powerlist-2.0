@@ -1,4 +1,4 @@
-.TodoList {
+/* .TodoList {
 	margin: 4rem auto;
 	padding: 2rem 3rem 3rem;
 	max-width: 600px;
@@ -33,7 +33,6 @@
 	opacity: 1;
 }
 .todo-exit-active {
-	/* opacity: 0; */
 	opacity: 0;
 	transform: translateX(-100%);
 	transition: all 500ms ease-in-out;
@@ -79,4 +78,4 @@
 	transform: translateY(-77px);
 	position: absolute;
 	transition: all 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
-}
+} */

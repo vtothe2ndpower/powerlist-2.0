@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { v4 as uuid } from 'uuid';
+import { connect } from 'react-redux';
+import { getTodos } from '../actions/todoActions';
+import PropTypes from 'prop-types';
+
 import NewTodoForm from './NewTodoForm';
 import Todo from './Todo';
 import './TodoList.css';
@@ -7,19 +14,23 @@ class TodoList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      todos: []
-    };
+    // this.state = {
+    //   todos: []
+    // };
     this.addItem = this.addItem.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.update = this.update.bind(this);
     this.toggleCompletion = this.toggleCompletion.bind(this);
   }
 
+  // componentDidMount() {
+  //   fetch('/api/todos')
+  //   .then(res => res.json())
+  //   .then(todos => this.setState({ todos }, () => console.log('Todos fetched...', todos)));
+  // }
+
   componentDidMount() {
-    fetch('/api/todos')
-    .then(res => res.json())
-    .then(todos => this.setState({ todos }, () => console.log('Todos fetched...', todos)));
+    this.props.getTodos();
   }
 
   addItem(item) {
@@ -60,7 +71,8 @@ class TodoList extends Component {
   }
 
   render() {
-    const { todos } = this.state;
+    // const { todos } = this.state;
+    const { todos } = this.props.todo;
     return (
       <div className="TodoList">
         <h1>The Power List <span>A Simple React Todo List Application</span></h1>
@@ -82,4 +94,17 @@ class TodoList extends Component {
   }
 }
 
-export default TodoList;
+TodoList.propTypes = {
+  getTodos: PropTypes.func.isRequired,
+  todo: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  todo: state.todo
+});
+
+export default connect(mapStateToProps, { getTodos })(TodoList);
+
+// Video 4:
+// Add Reactstrap Code
+// Add CSS for transitions
