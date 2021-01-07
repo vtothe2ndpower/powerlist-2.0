@@ -1,3 +1,0 @@
-module.exports = {
-  mongoURI: 'mongodb+srv://vtothe2ndpower:Password123@powerlist.jfvkk.mongodb.net/powerlist-web?retryWrites=true&w=majority'
-};
