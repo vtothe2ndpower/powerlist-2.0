@@ -10,6 +10,11 @@ import Todo from './Todo';
 import './TodoList.css';
 
 class TodoList extends Component {
+  static propTypes = {
+    getTodos: PropTypes.func.isRequired,
+    todo: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool
+  }
   constructor(props) {
     super(props);
 
@@ -75,14 +80,15 @@ class TodoList extends Component {
     const { todos } = this.props.todo;
     return (
       <div className="TodoList">
-        <h1>The Power List <span>A Simple React Todo List Application</span></h1>
-        {todos.map((item, index) => (
+        <h1>The Power List <span>A Full-Stack MERN Application</span></h1>
+        {todos.slice().reverse().map((item, index) => (
           <Todo 
             key={item._id}
             id={item._id}
             task={item.task} 
             completed={item.completed}
             num={index}
+            auth={this.props.isAuthenticated}
             updateItem={this.update}
             toggleTodo={this.toggleCompletion}
             handleClick={() => this.handleClick(item._id)}
@@ -93,13 +99,9 @@ class TodoList extends Component {
   }
 }
 
-TodoList.propTypes = {
-  getTodos: PropTypes.func.isRequired,
-  todo: PropTypes.object.isRequired
-}
-
 const mapStateToProps = (state) => ({
-  todo: state.todo
+  todo: state.todo,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getTodos, deleteTodo })(TodoList);
@@ -107,3 +109,7 @@ export default connect(mapStateToProps, { getTodos, deleteTodo })(TodoList);
 // Video 4:
 // Add Reactstrap Code
 // Add CSS for transitions
+
+// I want it added backwards
+
+// User React Router so it goes in to some welcome page if you're not logged in!

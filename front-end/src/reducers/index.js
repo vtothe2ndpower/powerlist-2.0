@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
 import todoReducer from './todoReducer';
+import errorReducer from './errorReducer';
+import authReducer from './authReducer';
 // import authReducer from './authReducer';
 
 export default combineReducers({
-  todo: todoReducer
-  // auth: authReducer
+  todo: todoReducer,
+  error: errorReducer,
+  auth: authReducer
 });

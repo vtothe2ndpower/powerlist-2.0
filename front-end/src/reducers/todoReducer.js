@@ -41,7 +41,7 @@ export default function(state = initialState, action) {
 //   "task": "Freelance Developer (Sole Proprietor): Code for 2 Hours",
 //   "task": "Language Learning: Study Japanese for 1 Hour",
 //   "task": "Coding Empire/Personal Brand: Apply to Jobs/Gigs + Developing Personal Brand for 1 Hour",
-//   "task": "Side Hustles (Flipping/De-Clutter): eBay & FB Marketplace (1 Hour)"
+//   "task": "Side Hustles (Flipping/De-Clutter): Sell on eBay & FB Marketplace for 1 Hour"
 // }
 
 // {

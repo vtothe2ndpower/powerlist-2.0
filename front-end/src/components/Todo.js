@@ -61,10 +61,14 @@ class Todo extends Component {
       result = (
         <div className="Todo">
           <span>{num+1}. <span className={completed ? 'completed Todo-task' : 'Todo-task'} onClick={this.handleToggle}>{task}</span> </span> 
+          {
+            this.props.auth ? 
           <div className="Todo-buttons">
           <button onClick={this.toggleForm}><i className="fas fa-pen" /></button>
           <button onClick={handleClick}><i className="fas fa-trash" /></button>
           </div>
+          : null
+          }
         </div>
       );
     }
@@ -73,3 +77,5 @@ class Todo extends Component {
 }
 
 export default Todo;
+
+// Make Unclickable if not authorized/logged in
