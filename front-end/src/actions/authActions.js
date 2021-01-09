@@ -36,7 +36,7 @@ export const register = ({ name, email, password }) => dispatch => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }
+  };
 
   // Request body
   const body = JSON.stringify({ name, email, password });
